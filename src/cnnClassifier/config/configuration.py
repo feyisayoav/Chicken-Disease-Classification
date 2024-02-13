@@ -1,6 +1,6 @@
-from cnnClassfier.constants import *
-from cnnClassfier.utils.common import read_yaml, create_directories
-from cnnClassfier.entity.config_entity import (DataIngestionConfig,
+from cnnClassifier.constants import *
+from cnnClassifier.utils.common import read_yaml, create_directories
+from cnnClassifier.entity.config_entity import (DataIngestionConfig,
                                                PrepareBaseModelConfig,
                                                PrepareCallbacksConfig)
 import os
@@ -60,3 +60,11 @@ class ConfigurationManager:
             Path(model_ckpt_dir),
             Path(config.tensorboard_root_log_dir)
         ])
+
+        prepare_callback_config = PrepareCallbacksConfig(
+            root_dir= Path(config.root_dir),
+            tensorboard_root_log_dir= Path(config.tensorboard_root_log_dir),
+            checkpoint_model_filepath=Path(config.checkpoint_model_filepath)
+        )
+
+        return prepare_callback_config
